@@ -13,7 +13,7 @@ const Actualizar = () => {
     const consultarConferencista = async () => {
       try {
         const token = localStorage.getItem("token");
-        const url = `${import.meta.env.VITE_BACKEND_URL}/conferencistas/${id}`; // Actualiza la URL para conferencistas
+        const url = `${import.meta.env.VITE_BACKEND_URL}/conferencista/${id}`; // Actualiza la URL para conferencistas
         const options = {
           headers: {
             "Content-Type": "application/json",

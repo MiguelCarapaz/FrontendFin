@@ -33,7 +33,7 @@ export const Register = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const url = "http://localhost:3000/api/registro";
+        const url = "http://localhost:3000/api/registro"; //cambia por el de variable de entorno
         const respuesta = await axios.post(url, values);
         setMensaje({ respuesta: respuesta.data.msg, tipo: true });
         Swal.fire({

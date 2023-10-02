@@ -3,7 +3,7 @@ import { MdDeleteForever, MdNoteAdd, MdInfo } from "react-icons/md";
 import axios from "axios";
 import Mensaje from "./Alertas/Mensaje";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 const Tabla2 = () => {
   const [conferencistas, setConferencistas] = useState([]);
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ const Tabla2 = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         };
-
+        
         Swal.fire({
           position: "center",
           icon: "success",

@@ -5,24 +5,14 @@ import Mensaje from "../componets/Alertas/Mensaje";
 
 const Visualizar = () => {
   const { id } = useParams();
-  const [paciente, setPaciente] = useState({});
+  const [conferencista, setConferencista] = useState({});
   const [mensaje, setMensaje] = useState({});
 
-  const formatearFecha = (fecha) => {
-    const nuevaFecha = new Date(fecha);
-    nuevaFecha.setMinutes(
-      nuevaFecha.getMinutes() + nuevaFecha.getTimezoneOffset()
-    );
-    return new Intl.DateTimeFormat("es-EC", { dateStyle: "long" }).format(
-      nuevaFecha
-    );
-  };
-
   useEffect(() => {
-    const consultarPaciente = async () => {
+    const consultarConferencista = async () => {
       try {
         const token = localStorage.getItem("token");
-        const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/${id}`;
+        const url = `${import.meta.env.VITE_BACKEND_URL}/conferencista/${id}`;
         const options = {
           headers: {
             "Content-Type": "application/json",
@@ -30,12 +20,12 @@ const Visualizar = () => {
           },
         };
         const respuesta = await axios.get(url, options);
-        setPaciente(respuesta.data);
+        setConferencista(respuesta.data);
       } catch (error) {
         setMensaje({ respuesta: error.response.data.msg, tipo: false });
       }
     };
-    consultarPaciente();
+    consultarConferencista();
   }, []);
  // Función para dividir el texto en líneas de 60 caracteres
  const dividirTextoEnLineas = (texto) => {
@@ -49,59 +39,59 @@ const Visualizar = () => {
     <>
       <div>
         <h1 className="font-black text-4xl text-gray-500">
-          Visualizar Paciente
+          Visualizar Conferencista
         </h1>
         <hr className="my-4" />
         <p className="mb-8">
         </p>
       </div>
       <div>
-        {Object.keys(paciente).length != 0 ? (
+        {Object.keys(conferencista).length != 0 ? (
           <div className="m-5 flex justify-between">
             <div>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
-                  * Nombre del paciente:{" "}
+                  * Nombre del conferencista:{" "}
                 </span>
-                {paciente.nombre}
+                {conferencista.nombre}
               </p>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
                   * Nombre del propietario:{" "}
                 </span>
-                {paciente.propietario}
+                {conferencista.propietario}
               </p>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
                   * Correo:{" "}
                 </span>
-                {paciente.email}
+                {conferencista.email}
               </p>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
                   * Fecha de atención:{" "}
                 </span>
-                {formatearFecha(paciente.ingreso)}
+                {/* {formatearFecha(conferencista.ingreso)} */}
               </p>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
                   * Fecha de salida:{" "}
                 </span>
-                {formatearFecha(paciente.salida)}
+                {/* {formatearFecha(conferencista.salida)} */}
               </p>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
                   * Estado:{" "}
                 </span>
                 <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                  {paciente.estado && "activo"}
+                  {conferencista.estado && "activo"}
                 </span>
               </p>
               <p className="text-md text-gray-00 mt-4">
                 <span className="text-gray-600 uppercase font-bold">
                   * Síntomas:{" "}
                 </span>
-                <pre>{dividirTextoEnLineas(paciente.sintomas)}</pre>
+                {/* <pre>{dividirTextoEnLineas(conferencista.sintomas)}</pre> */}
               </p>
             </div>
             <div>

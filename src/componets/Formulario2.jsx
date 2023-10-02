@@ -65,7 +65,7 @@ export const Formulario2 = ({ conferencista }) => {
           values.usuario = auth._id;
 
           if (conferencista?._id) {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/conferencistas/actualizar/${conferencista?._id}`;
+            const url = `${import.meta.env.VITE_BACKEND_URL}/conferencista/actualizar/${conferencista?._id}`;
             const options = {
               headers: {
                 method: 'PUT',
@@ -73,33 +73,19 @@ export const Formulario2 = ({ conferencista }) => {
                 Authorization: `Bearer ${token}`,
               },
             };
-
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Conferencista actualizado',
-              showConfirmButton: false,
-              timer: 2000,
-            });
-
-            await axios.put(url, values, options);
-          } else {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/conferencistas/registro`;
-            const options = {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-            };
-
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Conferencista registrado',
-              showConfirmButton: false,
-              timer: 2000,
-            });
-
+            if(mensaje === true){  
+            }
+            else{
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Conferencista registrado',
+                showConfirmButton: false,
+                timer: 2000,
+              });
+  
+            }
+            
             await axios.post(url, values, options);
           }
 
