@@ -1,1 +1,0 @@
-Miguel Carapaz - Nicole Motoche
